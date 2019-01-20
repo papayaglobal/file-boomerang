@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gradle
+.idea
+file-boomerang.iml
+*.xml
+out
+gradle
+.DS_Store
