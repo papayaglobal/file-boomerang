@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    environment:
+     JVM_OPTS: -Xmx3200m
+     TERM: dumb
+
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: resolve dependencies
+          command: ./gradlew dependencies
+
+      - run:
+          name: build and test
+          command: ./gradlew build
+
+      - store_artifacts:
+          path: ~/repo/build/reports
+          destination: reports
+
+#      - run:
+#          name: push and deploy to nexus
+#          command: ./circleci/deploy.sh
