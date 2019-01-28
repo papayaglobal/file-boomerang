@@ -1,4 +1,4 @@
-package com.papaya.boomerang
+package com.papaya.boomerang.validation
 
 import java.net.URL
 

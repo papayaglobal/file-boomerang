@@ -1,9 +1,11 @@
 package com.papaya.boomerang
 
-import com.papaya.boomerang.FileBoomerangValidator.validateInValidUrl
-import com.papaya.boomerang.FileBoomerangValidator.validateNotEmpty
+import com.papaya.boomerang.validation.FileBoomerangValidator.validateInValidUrl
+import com.papaya.boomerang.validation.FileBoomerangValidator.validateNotEmpty
 import com.papaya.boomerang.client.AwsClient
 import com.papaya.boomerang.client.FileBoomerangHttpClient
+import com.papaya.boomerang.logger.FileBoomerangLogger
+import com.papaya.boomerang.validation.FileBoomerangException
 
 class FileBoomerang(val options: FileBoomerangOptions) {
 

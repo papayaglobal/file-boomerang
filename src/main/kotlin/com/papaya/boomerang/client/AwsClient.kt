@@ -9,9 +9,9 @@ import com.amazonaws.services.s3.AmazonS3
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.model.PutObjectResult
-import com.papaya.boomerang.FileBoomerangException
-import com.papaya.boomerang.FileBoomerangLogger.logger
-import com.papaya.boomerang.FileBoomerangValidator.validateNotEmpty
+import com.papaya.boomerang.validation.FileBoomerangException
+import com.papaya.boomerang.logger.FileBoomerangLogger.logger
+import com.papaya.boomerang.validation.FileBoomerangValidator.validateNotEmpty
 import com.papaya.boomerang.common.PropertyResolver
 import java.io.InputStream
 
@@ -57,7 +57,7 @@ object AwsClient {
             logger.error("failed to upload $destination to bucket: $bucket, follow reason: $e")
         }
 
-        throw FileBoomerangException("Failed to upload $destination to bucket: $bucket" )
+        throw FileBoomerangException("Failed to upload $destination to bucket: $bucket")
     }
 
     private fun stateContentLength(resource: InputStream): ObjectMetadata {

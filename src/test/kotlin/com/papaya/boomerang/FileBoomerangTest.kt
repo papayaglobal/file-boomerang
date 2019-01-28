@@ -2,6 +2,7 @@ package com.papaya.boomerang
 
 import com.papaya.boomerang.support.MockS3Client
 import com.papaya.boomerang.support.ResourceStub
+import com.papaya.boomerang.validation.FileBoomerangException
 import org.junit.Rule
 import org.junit.contrib.java.lang.system.EnvironmentVariables
 import org.junit.jupiter.api.*

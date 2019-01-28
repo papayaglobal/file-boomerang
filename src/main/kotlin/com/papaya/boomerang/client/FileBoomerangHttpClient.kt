@@ -1,8 +1,7 @@
 package com.papaya.boomerang.client
 
-import com.papaya.boomerang.FileBoomerangException
-import com.papaya.boomerang.FileBoomerangLogger
-import com.papaya.boomerang.FileBoomerangLogger.logger
+import com.papaya.boomerang.validation.FileBoomerangException
+import com.papaya.boomerang.logger.FileBoomerangLogger.logger
 import org.apache.http.client.fluent.Request
 import java.io.IOException
 import java.io.InputStream
@@ -19,6 +18,6 @@ object FileBoomerangHttpClient {
             logger.error("Failed to downloadResource $resourceToDownload, follow reason: $e")
         }
 
-        throw FileBoomerangException("Failed to downloadResource $resourceToDownload" )
+        throw FileBoomerangException("Failed to downloadResource $resourceToDownload")
     }
 }

@@ -1,4 +1,4 @@
-package com.papaya.boomerang
+package com.papaya.boomerang.logger
 
 import org.apache.log4j.Level
 import org.apache.log4j.Logger

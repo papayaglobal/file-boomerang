@@ -1,5 +1,7 @@
 package com.papaya.boomerang
 
+import com.papaya.boomerang.validation.FileBoomerangException
+import com.papaya.boomerang.validation.FileBoomerangValidator
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

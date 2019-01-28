@@ -1,6 +1,6 @@
 package com.papaya.boomerang.client
 
-import com.papaya.boomerang.FileBoomerangException
+import com.papaya.boomerang.validation.FileBoomerangException
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
