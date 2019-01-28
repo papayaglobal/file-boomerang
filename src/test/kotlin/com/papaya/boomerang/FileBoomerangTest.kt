@@ -28,21 +28,21 @@ class FileBoomerangTest {
 
     @Test
     fun shipResourceToDestination(){
-        FileBoomerang(FileBoomerangOptions("test")).resource("http://localhost:8080/resource.pdf").shipTo("/resource.pdf")
+        FileBoomerang(FileBoomerangOptions("test", true)).resource("http://localhost:8080/resource.pdf").shipTo("/resource.pdf")
         assertResourceEqualsTo(uploadedFile())
     }
 
     @Test
     fun throwExceptionGivenEmptyBucket(){
         Assertions.assertThrows(FileBoomerangException::class.java) {
-            FileBoomerang(FileBoomerangOptions("")).resource("http://localhost:8080/resource.pdf").shipTo("/resource.pdf")
+            FileBoomerang(FileBoomerangOptions("", true)).resource("http://localhost:8080/resource.pdf").shipTo("/resource.pdf")
         }
     }
 
     @Test
     fun throwExceptionGivenBadResponseOnResource(){
         Assertions.assertThrows(FileBoomerangException::class.java) {
-            FileBoomerang(FileBoomerangOptions("test")).resource("http://localhost:8080/badResponse.pdf").shipTo("/resource.pdf")
+            FileBoomerang(FileBoomerangOptions("test",true)).resource("http://localhost:8080/badResponse.pdf").shipTo("/resource.pdf")
         }
     }
 

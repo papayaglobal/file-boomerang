@@ -10,31 +10,36 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.model.PutObjectResult
 import com.papaya.boomerang.FileBoomerangException
+import com.papaya.boomerang.FileBoomerangLogger.logger
 import com.papaya.boomerang.FileBoomerangValidator.validateNotEmpty
 import com.papaya.boomerang.common.PropertyResolver
 import java.io.InputStream
-import java.util.logging.Logger
 
 
 object AwsClient {
 
-    val logger = Logger.getLogger(AwsClient::class.java.name)
 
     private fun client(): AmazonS3 {
         return when(PropertyResolver("TEST").resolve()){
-            null -> productionClient()
+            null -> productionMode()
             else -> testMode()
         }
     }
 
-    private fun productionClient(): AmazonS3 {
+    private fun productionMode(): AmazonS3 {
         logger.info("bootstrap production mode")
-        return AmazonS3ClientBuilder.standard().withCredentials(ProfileCredentialsProvider()).build()
+        return AmazonS3ClientBuilder.standard().
+                withCredentials(ProfileCredentialsProvider()).
+                build()
     }
 
     private fun testMode(): AmazonS3 {
         logger.info("bootstrap test mode")
-        return AmazonS3ClientBuilder.standard().withPathStyleAccessEnabled(true).withEndpointConfiguration(AwsClientBuilder.EndpointConfiguration("http://localhost:8001", "us-west-2")).withCredentials(AWSStaticCredentialsProvider(AnonymousAWSCredentials())).build()
+        return AmazonS3ClientBuilder.standard().
+                withPathStyleAccessEnabled(true).
+                withEndpointConfiguration(AwsClientBuilder.EndpointConfiguration("http://localhost:8001", "us-west-2")).
+                withCredentials(AWSStaticCredentialsProvider(AnonymousAWSCredentials())).
+                build()
     }
 
     fun uploadResourceTo(bucket: String, resource: InputStream, destination: String) {
@@ -49,7 +54,7 @@ object AwsClient {
             logger.info("uploaded successfully $destination to bucket $bucket")
             return result
         } catch (e : SdkBaseException){
-            logger.severe("failed to upload $destination to bucket: $bucket, follow reason: $e")
+            logger.error("failed to upload $destination to bucket: $bucket, follow reason: $e")
         }
 
         throw FileBoomerangException("Failed to upload $destination to bucket: $bucket" )

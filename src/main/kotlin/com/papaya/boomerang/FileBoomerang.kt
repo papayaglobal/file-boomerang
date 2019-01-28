@@ -7,6 +7,10 @@ import com.papaya.boomerang.client.FileBoomerangHttpClient
 
 class FileBoomerang(val options: FileBoomerangOptions) {
 
+    init {
+        FileBoomerangLogger.log(options.log)
+    }
+
     private var resource : String = ""
 
     @Throws(FileBoomerangException::class)

@@ -27,5 +27,5 @@ jobs:
           destination: reports
 
 #      - run:
-#          name: push and deploy to nexus
+#          name: push and deploy to jcenter
 #          command: ./circleci/deploy.sh

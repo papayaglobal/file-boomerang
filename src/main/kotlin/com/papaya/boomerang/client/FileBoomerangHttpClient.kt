@@ -1,14 +1,13 @@
 package com.papaya.boomerang.client
 
 import com.papaya.boomerang.FileBoomerangException
+import com.papaya.boomerang.FileBoomerangLogger
+import com.papaya.boomerang.FileBoomerangLogger.logger
 import org.apache.http.client.fluent.Request
 import java.io.IOException
 import java.io.InputStream
-import java.util.logging.Logger
 
 object FileBoomerangHttpClient {
-
-    val logger = Logger.getLogger(FileBoomerangHttpClient::class.java.name)
 
     fun downloadResource(resourceToDownload: String): InputStream {
         try {
@@ -17,7 +16,7 @@ object FileBoomerangHttpClient {
             logger.info("downloaded $resourceToDownload successfully to tmp")
             return result
         } catch (e: IOException) { // catch all .net error
-            logger.severe("Failed to downloadResource $resourceToDownload, follow reason: $e")
+            logger.error("Failed to downloadResource $resourceToDownload, follow reason: $e")
         }
 
         throw FileBoomerangException("Failed to downloadResource $resourceToDownload" )

@@ -4,6 +4,5 @@
 file-boomerang.iml
 *.xml
 out
-#gradle
 .DS_Store
 build
