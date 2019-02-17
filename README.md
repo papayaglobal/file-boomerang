@@ -10,12 +10,32 @@
 
 ## Import sdk
 
+artifacts available @ [*bintray repositories*](https://bintray.com/papaya/file-boomerang/file-boomerang)
+
 ### gradle
 ```
-TBD - need to define if this package is handle in nexus, jcenter or other
+dependencies {
+  ...
+    compile compile 'papaya:file-boomerang:<version>'
+}
+```
+
+### maven
+```
+<dependency>
+  <groupId>papaya</groupId>
+  <artifactId>file-boomerang</artifactId>
+  <version>put-version-here</version>
+  <type>pom</type>
+</dependency>
 ```
 
 ### Example
 ```
 FileBoomerang(FileBoomerangOptions(<bucket>, <log>)).resource(<url of a resource>).shipTo(<s3 path>)
 ```
+
+## License
+MIT
+
+-----
