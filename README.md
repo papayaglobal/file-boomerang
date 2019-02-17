@@ -1,6 +1,8 @@
 # File Boomerang
 
-**File-Boomerang** is kotlin lib that shift a resource from web to S3
+**File-Boomerang** is kotlin lib that shift a resource from web to S3.
+
+Note: aws profile that is configured on machine that invokes _File-Boomerang_, will be the profile it uses. 
 
 ## Requirements
 
