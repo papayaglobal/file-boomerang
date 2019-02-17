@@ -24,5 +24,9 @@ jobs:
       - run: mvn -s settings.xml package
 
       - run:
+          name: run tests
+          command: mvn test
+
+      - run:
           name: destribute to jcneter
           command: .circleci/destribute_to_jcenter.sh
