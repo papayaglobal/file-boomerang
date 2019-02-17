@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8u171-jdk
+
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+          key: circleci-file-boomerang-{{ checksum "pom.xml" }}
+
+      - run: mvn -s settings.xml dependency:go-offline # gets the project dependencies
+
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.m2
+          key: circleci-file-boomerang-{{ checksum "pom.xml" }}
+
+      - run: mvn -s settings.xml package
+
+      - run:
+          name: destribute to jcneter
+          command: .circleci/destribute_to_jcenter.sh

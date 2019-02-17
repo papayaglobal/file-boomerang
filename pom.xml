@@ -10,71 +10,118 @@
     <name>File Boomerang</name>
     <url>http://maven.apache.org</url>
 
+    <repositories>
+        <repository>
+            <id>bintray-rockem-maven</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/rockem/maven</url>
+        </repository>
+        <repository>
+            <id>jetbrains-all</id>
+            <url>http://repository.jetbrains.com/all</url>
+        </repository>
+    </repositories>
+
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>1.3.20</version>
-        </dependency>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
-            <version>1.11.475</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>fluent-hc</artifactId>
-            <version>4.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8</version>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    <distributionManagement>
-        <repository>
-            <id>bintray-ticktok-io-maven</id>
-            <name>ticktok-java-client</name>
-            <url>https://api.bintray.com/maven/ticktok-io/maven/ticktok-java-client/;publish=1</url>
-        </repository>
-    </distributionManagement>
+  <dependencies>
+      <!--Kotlin sdk-->
+  <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <version>1.3.20</version>
+  </dependency>
+      <!--aws sdk-->
+  <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
+      <version>1.11.475</version>
+  </dependency>
+      <!--rest client-->
+  <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>fluent-hc</artifactId>
+      <version>4.5.6</version>
+  </dependency>
+      <!--logs-->
+  <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+  </dependency>
+      <!--matchers-->
+  <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+  </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-api</artifactId>
+          <version>5.4.0</version>
+          <scope>test</scope>
+      </dependency>
+      <!--mock env vars-->
+      <dependency>
+          <groupId>com.github.stefanbirkner</groupId>
+          <artifactId>system-rules</artifactId>
+          <version>1.16.1</version>
+          <scope>test</scope>
+      </dependency>
+      <!--stubber-->
+      <dependency>
+          <groupId>org.rockem</groupId>
+          <artifactId>blink-http</artifactId>
+          <version>0.5</version>
+          <scope>test</scope>
+      </dependency>
+      <!--s3 mock-->
+      <dependency>
+          <groupId>io.findify</groupId>
+          <artifactId>s3mock_2.12</artifactId>
+          <version>0.2.5</version>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+
+
+  <build>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>1.3.20</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jetbrains-all</id>
+      <url>http://repository.jetbrains.com/all</url>
+    </pluginRepository>
+  </pluginRepositories>
+
 </project>
