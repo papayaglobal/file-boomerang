@@ -114,8 +114,27 @@
           </execution>
         </executions>
       </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
   </build>
+    <distributionManagement>
+        <repository>
+            <id>bintray-papaya-file-boomerang</id>
+            <name>papaya-file-boomerang</name>
+            <url>https://api.bintray.com/maven/papaya/file-boomerang/file-boomerang/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
   <pluginRepositories>
     <pluginRepository>
